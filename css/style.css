@@ -346,3 +346,5 @@ footer.end { background: var(--surface); }
 .greet b { margin-right: 4px; }
 .hero .facts p { color: var(--fg); max-width: none; margin: 0; }
 .facts b { font-weight: 600; }
+/* each tree line: wrapped parts hang under the file name instead of column 0 */
+.editor pre .hl { display: block; padding-left: calc(var(--i, 0) * 1ch); text-indent: calc(var(--i, 0) * -1ch); }

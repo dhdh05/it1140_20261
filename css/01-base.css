@@ -1,0 +1,55 @@
+/* Biến màu, font, kiểu chữ chung */
+/* Layout: dark "editor" hero band with tabs; below, a single reading column. Rules run as a timeline across one lab session; report steps run down a numbered rail. */
+:root {
+  --ink: #0d1b2e;          /* hero band, fixed in both themes */
+  --ink-2: #13263f;
+  --ink-line: #24405f;
+  --ink-fg: #e9eef6;
+  --ink-muted: #8ea3bf;
+  --py: #ffd43b;           /* python yellow, accent on dark */
+  --py-ink: #3a2f00;
+  --blue: #3c78d8;
+
+  --bg: #f4f6f9;
+  --surface: #ffffff;
+  --panel: #eaeff6;
+  --fg: #142033;
+  --muted: #5b6880;
+  --line: #d6dde8;
+  --accent: #2a62c4;
+  --accent-soft: #e2ebfa;
+  --hi: #f2c200;
+  --hi-soft: #fff6d1;
+  --warn: #c0352b;
+  --warn-soft: #fdeceb;
+  --ok: #1d7d4a;
+  --ok-soft: #e3f4ea;
+
+  --font-display: "Bricolage Grotesque", "Be Vietnam Pro", system-ui, sans-serif;
+  --font-body: "Be Vietnam Pro", "Segoe UI", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0b1320; --surface: #121c2c; --panel: #192538; --fg: #e5ebf4; --muted: #95a3b9; --line: #26354c;
+    --accent: #86adf5; --accent-soft: #1b2a45; --hi: #ffd43b; --hi-soft: #2e2a14;
+    --warn: #ff8b82; --warn-soft: #3a1d1d; --ok: #6fd39b; --ok-soft: #15301f;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0b1320; --surface: #121c2c; --panel: #192538; --fg: #e5ebf4; --muted: #95a3b9; --line: #26354c;
+  --accent: #86adf5; --accent-soft: #1b2a45; --hi: #ffd43b; --hi-soft: #2e2a14;
+  --warn: #ff8b82; --warn-soft: #3a1d1d; --ok: #6fd39b; --ok-soft: #15301f;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; }
+body { background: var(--bg); color: var(--fg); font-family: var(--font-body); font-size: 16px; line-height: 1.65; }
+[hidden] { display: none !important; }
+.gutter { padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+.col { max-width: 860px; margin: 0 auto; min-width: 0; }
+code, pre, .mono { font-family: var(--font-mono); font-variant-ligatures: none; font-feature-settings: "liga" 0, "calt" 0; }
+a { color: var(--accent); text-underline-offset: 3px; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+

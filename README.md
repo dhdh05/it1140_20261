@@ -8,7 +8,13 @@ sections/         nội dung từng phần, mỗi phần một file
   noi-quy.html                 tab 01 Nội quy lớp học
   nop-bao-cao/0-tong-quan.html tab 02: phần mở đầu + 2 file cần nộp
   nop-bao-cao/1-...6-...html   tab 02: từng bước 1 → 6
-css/style.css     giao diện, màu sắc
+css/              giao diện, nạp theo thứ tự 01 → 06
+  01-base.css         biến màu, font, kiểu chữ chung
+  02-hero-tabs.css    đầu trang, thanh tab
+  03-noi-quy.css      tab Nội quy
+  04-nop-bao-cao.css  tab Nộp báo cáo (thẻ file, các bước, khung code, công cụ tạo tên, chấm điểm)
+  05-theme.css        điện thoại, giao diện sáng tương phản cao, chế độ tối
+  06-polish.css       làm đẹp thêm, khung code cuộn ngang
 js/greeting.js    lời chào theo giờ + lời chúc
 js/tabs.js        chuyển tab Nội quy / Nộp báo cáo
 js/include.js     ghép các file trong sections/ vào trang

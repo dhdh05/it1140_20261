@@ -346,5 +346,8 @@ footer.end { background: var(--surface); }
 .greet b { margin-right: 4px; }
 .hero .facts p { color: var(--fg); max-width: none; margin: 0; }
 .facts b { font-weight: 600; }
-/* each tree line: wrapped parts hang under the file name instead of column 0 */
-.editor pre .hl { display: block; padding-left: calc(var(--i, 0) * 1ch); text-indent: calc(var(--i, 0) * -1ch); }
+/* code/tree boxes: never wrap, scroll sideways instead (all screen sizes) */
+.editor pre, .editor pre .hl { white-space: pre; }
+.editor pre { overflow-x: auto; -webkit-overflow-scrolling: touch; overscroll-behavior-x: contain; scrollbar-width: thin; }
+.editor pre .hl { display: block; width: max-content; min-width: 100%; }
+@media (max-width: 600px) { .editor pre { white-space: pre; overflow-x: auto; overflow-wrap: normal; } }

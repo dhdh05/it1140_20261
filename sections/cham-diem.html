@@ -1,0 +1,54 @@
+<!-- Tab 3: Chấm điểm (máy tính điểm cho TA). Logic ở js/cham-diem/, giao diện ở css/07-cham-diem.css -->
+  <div class="sec-head">
+    <div class="eyebrow">Dành cho GV/TA · BTH01–BTH04</div>
+    <h2>Tính điểm báo cáo</h2>
+    <p>Chọn buổi, tick lỗi và bài tự luyện, rồi copy điểm và phản hồi dán vào Teams. Không lưu dữ liệu sinh viên.</p>
+  </div>
+  <form class="cd-lock" id="cd-lock" autocomplete="off">
+    <label for="cd-pass">Nhập mật khẩu để mở</label>
+    <div class="cd-lock-row">
+      <input type="password" id="cd-pass" autocomplete="off">
+      <button type="submit" class="cd-btn primary">Mở</button>
+    </div>
+    <p class="cd-lock-err" id="cd-lock-err" hidden>Sai mật khẩu.</p>
+  </form>
+  <div id="cd-body" hidden>
+  <nav class="cd-tabs" id="cd-tabs" aria-label="Chọn buổi"></nav>
+  <div class="cd-layout">
+    <div class="cd-main">
+      <section class="cd-card">
+        <div class="cd-head"><h3>Lỗi / vi phạm</h3><span class="cd-small">Bắt đầu từ <b id="cd-base">8.5</b> điểm</span></div>
+        <div class="cd-toggles" id="cd-errs"></div>
+      </section>
+      <section class="cd-card">
+        <div class="cd-head"><h3>Bài tự luyện làm thêm</h3><span class="cd-small" id="cd-bonus">+0.25 / bài</span></div>
+        <p class="cd-topic" id="cd-topic"></p>
+        <label class="cd-ex cd-all"><input type="checkbox" id="cd-exall"><span class="cd-ex-name"><b>Tick tất cả bài tự luyện</b></span></label>
+        <div class="cd-exgrid" id="cd-exlist"></div>
+        <div class="cd-toggles" style="margin-top:12px">
+          <label class="cd-toggle ai"><input type="checkbox" id="cd-ai"><span class="cd-label">Bài thêm có dấu hiệu lạm dụng AI/LLM</span><span class="cd-val">không cộng</span></label>
+        </div>
+      </section>
+      <details class="cd-card cd-settings-card">
+        <summary>Cài đặt thang điểm</summary>
+        <div class="cd-settings" id="cd-settings"></div>
+      </details>
+    </div>
+    <aside class="cd-side">
+      <div class="cd-score" id="cd-score">
+        <div class="cd-top"><span class="cd-buoi" id="cd-buoi">BTH01</span><span class="cd-flag" id="cd-flag"></span></div>
+        <dl class="cd-break">
+          <div><dt>Điểm bị trừ</dt><dd class="tru" id="cd-tru">0</dd></div>
+          <div><dt>Điểm được cộng</dt><dd class="cong" id="cd-cong">0</dd></div>
+        </dl>
+        <div class="cd-field"><span>Phản hồi</span><button type="button" class="cd-btn sm" id="cd-copynote">Copy phản hồi</button></div>
+        <textarea id="cd-note" rows="7" spellcheck="false" aria-label="Phản hồi"></textarea>
+        <p class="cd-hint">Tự điền khi bạn tick. Có thể sửa thêm trước khi copy.</p>
+        <div class="cd-field"><span>Điểm</span><button type="button" class="cd-btn sm primary" id="cd-copyscore">Copy điểm</button></div>
+        <div class="cd-final"><span id="cd-final">8.5</span><small>/ 10</small></div>
+        <button type="button" class="cd-btn wide" id="cd-reset">Chấm bài tiếp theo <kbd>Esc</kbd></button>
+      </div>
+    </aside>
+  </div>
+  </div>
+  <div class="cd-toast" id="cd-toast" hidden></div>

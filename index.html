@@ -15,6 +15,7 @@
   <link rel="stylesheet" href="css/04-nop-bao-cao.css">
   <link rel="stylesheet" href="css/05-theme.css">
   <link rel="stylesheet" href="css/06-polish.css">
+  <link rel="stylesheet" href="css/07-cham-diem.css">
 </head>
 <body>
 <header class="hero gutter">
@@ -37,6 +38,7 @@
     <nav class="tabs" role="tablist" aria-label="Nội dung">
       <button type="button" role="tab" id="t-noi-quy" aria-controls="p-noi-quy" data-tab="noi-quy"><span class="tn">01</span>Nội quy lớp học</button>
       <button type="button" role="tab" id="t-nop-bao-cao" aria-controls="p-nop-bao-cao" data-tab="nop-bao-cao"><span class="tn">02</span>Nộp báo cáo</button>
+      <button type="button" role="tab" id="t-cham-diem" aria-controls="p-cham-diem" data-tab="cham-diem"><span class="tn">03</span>Chấm điểm</button>
     </nav>
   </div>
 </div>
@@ -63,12 +65,20 @@
       </div>
     </div>
 
+    <!-- ================= CHẤM ĐIỂM ================= -->
+    <div class="panel" role="tabpanel" id="p-cham-diem" aria-labelledby="t-cham-diem" hidden>
+      <div data-include="sections/cham-diem.html"></div>
+    </div>
+
   </div>
 </main>
 <footer class="end gutter"><div class="col foot"><span>IT1140 · Tin học đại cương</span><span>Cập nhật: <time datetime="2026-11-07">07/11/2026</time></span></div></footer>
 
 <script src="js/greeting.js"></script>
 <script src="js/tabs.js"></script>
+<script src="js/cham-diem/data.js"></script>
+<script src="js/cham-diem/score.js"></script>
+<script src="js/cham-diem/app.js"></script>
 <script src="js/include.js"></script>
 </body>
 </html>

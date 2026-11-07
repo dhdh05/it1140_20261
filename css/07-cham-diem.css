@@ -1,0 +1,100 @@
+/* Tab Chấm điểm: bên trái các ô tick, bên phải thẻ điểm dính khi cuộn. Dùng chung biến màu của trang. */
+:root { --half: #b45309; --half-soft: #fdf0e3; --ai: #6d3fc0; --ai-soft: #efe8fb; --on-accent: #ffffff; }
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) { --half: #f5a65b; --half-soft: #3a2a17; --ai: #b99af0; --ai-soft: #2a2140; --on-accent: #0e1626; }
+}
+:root[data-theme="dark"] { --half: #f5a65b; --half-soft: #3a2a17; --ai: #b99af0; --ai-soft: #2a2140; --on-accent: #0e1626; }
+
+/* chọn buổi */
+.cd-tabs { display: flex; gap: 6px; flex-wrap: wrap; }
+.cd-tabs button { font: 700 14px var(--font-mono); color: var(--muted); background: var(--surface); border: 1px solid var(--line); border-radius: 999px; padding: 7px 16px; cursor: pointer; }
+.cd-tabs button:hover { border-color: var(--accent); color: var(--fg); }
+.cd-tabs button[aria-pressed="true"] { background: var(--accent); border-color: var(--accent); color: var(--on-accent); }
+
+.cd-layout { display: grid; grid-template-columns: minmax(0, 1fr) 330px; gap: 20px; align-items: start; }
+.cd-side { position: sticky; top: 76px; }
+@media (max-width: 860px) { .cd-layout { grid-template-columns: minmax(0, 1fr); } .cd-side { position: static; } }
+
+.cd-card { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 16px 18px; margin-bottom: 16px; box-shadow: 0 1px 2px rgba(17,24,39,.04), 0 4px 14px rgba(17,24,39,.04); }
+.cd-head { display: flex; justify-content: space-between; align-items: baseline; gap: 10px; margin-bottom: 10px; flex-wrap: wrap; }
+.cd-head h3 { font-size: 17px; }
+.cd-small { font-size: 13px; color: var(--muted); }
+.cd-topic { margin: -4px 0 12px; color: var(--muted); font-size: 13.5px; }
+
+/* ô tick lỗi */
+.cd-toggles { display: grid; gap: 6px; }
+.cd-toggle { display: grid; grid-template-columns: 20px minmax(0, 1fr) auto; align-items: center; gap: 12px; padding: 10px 12px; border: 1px solid var(--line); border-radius: 10px; cursor: pointer; user-select: none; transition: background .12s, border-color .12s; }
+.cd-toggle:hover { border-color: var(--muted); }
+.cd-toggle input { width: 18px; height: 18px; margin: 0; cursor: pointer; }
+.cd-label { font-size: 14.5px; line-height: 1.45; }
+.cd-val { font: 700 13px var(--font-mono); padding: 2px 8px; border-radius: 6px; white-space: nowrap; }
+.cd-toggle.err .cd-val { color: var(--warn); background: var(--warn-soft); }
+.cd-toggle.half .cd-val { color: var(--half); background: var(--half-soft); }
+.cd-toggle.zero .cd-val { color: var(--surface); background: var(--warn); }
+.cd-toggle.ai .cd-val { color: var(--ai); background: var(--ai-soft); font: 600 12px var(--font-body); }
+.cd-toggle.err input, .cd-toggle.zero input { accent-color: var(--warn); }
+.cd-toggle.half input { accent-color: var(--half); }
+.cd-toggle.ai input { accent-color: var(--ai); }
+.cd-toggle.err:has(input:checked), .cd-toggle.zero:has(input:checked) { background: var(--warn-soft); border-color: var(--warn); }
+.cd-toggle.half:has(input:checked) { background: var(--half-soft); border-color: var(--half); }
+.cd-toggle.ai:has(input:checked) { background: var(--ai-soft); border-color: var(--ai); }
+
+/* bài tự luyện */
+.cd-exgrid { display: grid; grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); gap: 6px; }
+.cd-ex { display: flex; align-items: center; gap: 8px; padding: 8px 10px; border: 1px solid var(--line); border-radius: 10px; cursor: pointer; user-select: none; }
+.cd-ex:hover { border-color: var(--muted); }
+.cd-ex input { margin: 0; width: 16px; height: 16px; accent-color: var(--ok); flex: none; }
+.cd-ex-num { font: 700 13px var(--font-mono); color: var(--ok); flex: none; }
+.cd-ex-name { font-size: 13.5px; line-height: 1.3; }
+.cd-ex:has(input:checked) { background: var(--ok-soft); border-color: var(--ok); }
+.cd-ex.cd-all { margin: 0 0 8px; border-style: dashed; width: fit-content; padding-right: 14px; }
+
+/* thẻ điểm */
+.cd-score { background: var(--surface); border: 1px solid var(--line); border-top: 5px solid var(--accent); border-radius: 16px; padding: 16px; box-shadow: 0 6px 20px rgba(17,24,39,.06); }
+.cd-score[data-state="good"] { border-top-color: var(--ok); }
+.cd-score[data-state="minus"], .cd-score[data-state="zero"] { border-top-color: var(--warn); }
+.cd-score[data-state="half"] { border-top-color: var(--half); }
+.cd-top { display: flex; justify-content: space-between; align-items: center; gap: 8px; min-height: 22px; }
+.cd-buoi { font: 700 12px var(--font-mono); color: var(--muted); letter-spacing: .06em; }
+.cd-flag { font-size: 12.5px; font-weight: 600; color: var(--half); text-align: right; }
+.cd-score[data-state="zero"] .cd-flag { color: var(--warn); }
+.cd-break { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin: 8px 0 14px; }
+.cd-break div { background: var(--panel); border-radius: 10px; padding: 6px 10px; }
+.cd-break dt { font-size: 12px; color: var(--muted); }
+.cd-break dd { margin: 0; font: 700 18px var(--font-mono); }
+.cd-break .tru { color: var(--warn); } .cd-break .cong { color: var(--ok); }
+.cd-field { display: flex; justify-content: space-between; align-items: center; margin: 4px 0 6px; font-weight: 700; font-size: 14px; }
+#cd-note { width: 100%; resize: vertical; font: 13.5px/1.5 var(--font-body); color: var(--fg); background: var(--bg); border: 1px solid var(--line); border-radius: 8px; padding: 10px 12px; }
+#cd-note:focus { outline: 2px solid var(--accent-soft); border-color: var(--accent); }
+.cd-hint { margin: 2px 0 12px; font-size: 12px; color: var(--muted); }
+.cd-final { display: flex; align-items: baseline; gap: 8px; margin-bottom: 14px; }
+.cd-final span { font: 700 40px/1 var(--font-mono); font-variant-numeric: tabular-nums; background: var(--bg); border: 1px solid var(--line); border-radius: 8px; padding: 8px 14px; min-width: 110px; text-align: center; }
+.cd-final small { font-size: 20px; font-weight: 600; color: var(--muted); }
+.cd-score[data-state="zero"] .cd-final span { color: var(--warn); }
+
+/* nút, cài đặt, thông báo */
+.cd-btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; cursor: pointer; border: 1px solid var(--line); background: var(--surface); color: var(--fg); font: 600 14px var(--font-body); padding: 9px 14px; border-radius: 10px; }
+.cd-btn:hover { border-color: var(--accent); }
+.cd-btn.wide { width: 100%; }
+.cd-btn.primary { background: var(--accent); color: var(--on-accent); border-color: var(--accent); }
+.cd-btn.sm { padding: 5px 10px; font-size: 13px; }
+.cd-btn kbd { font: 600 11px var(--font-mono); border: 1px solid var(--line); border-radius: 4px; padding: 0 5px; color: var(--muted); }
+.cd-settings-card summary { cursor: pointer; font-weight: 600; }
+.cd-settings { display: grid; gap: 10px; margin-top: 14px; }
+.cd-settings label { display: flex; justify-content: space-between; align-items: center; gap: 12px; border-bottom: 1px dashed var(--line); padding-bottom: 8px; font-size: 14px; }
+.cd-settings input, .cd-settings select { width: 100px; flex: none; text-align: center; font: 14px var(--font-body); color: var(--fg); background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: 6px 8px; }
+.cd-toast { position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); background: var(--fg); color: var(--bg); padding: 10px 18px; border-radius: 10px; font-size: 14px; box-shadow: 0 6px 20px rgba(0,0,0,.25); z-index: 20; }
+
+/* có 3 tab: trên điện thoại ẩn số thứ tự để vừa một hàng */
+@media (max-width: 600px) {
+  .tabs .tn { display: none; }
+  .tabs button { padding: 9px 4px; font-size: 13.5px; }
+}
+
+/* màn khoá */
+.cd-lock { max-width: 380px; background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 18px; display: flex; flex-direction: column; gap: 10px; }
+.cd-lock label { font-weight: 600; font-size: 15px; }
+.cd-lock-row { display: flex; gap: 8px; }
+.cd-lock input { flex: 1; min-width: 0; font: 15px var(--font-body); color: var(--fg); background: var(--bg); border: 1px solid var(--line); border-radius: 8px; padding: 8px 10px; }
+.cd-lock input:focus { outline: 2px solid var(--accent-soft); border-color: var(--accent); }
+.cd-lock-err { color: var(--warn); font-size: 14px; font-weight: 600; }

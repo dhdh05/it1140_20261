@@ -1,4 +1,4 @@
-// Chuyển tab Nội quy / Nộp báo cáo (hỗ trợ #noi-quy, #nop-bao-cao)
+// Chuyển tab Nội quy / Nộp báo cáo / Chấm điểm (hỗ trợ #noi-quy, #nop-bao-cao, #cham-diem)
 (function () {
   var tabs = Array.prototype.slice.call(document.querySelectorAll('.tabs [role="tab"]'));
   function show(name, focus) {

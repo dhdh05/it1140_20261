@@ -17,5 +17,7 @@
     var s = document.createElement("script");
     s.src = "js/filename.js";
     document.body.appendChild(s);
+    // Báo cho các script khác (tab Chấm điểm) biết nội dung đã ghép xong
+    document.dispatchEvent(new Event("partials:ready"));
   });
 })();

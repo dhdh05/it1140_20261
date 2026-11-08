@@ -6,6 +6,9 @@ const ERRORS = [
   { id: "code",  label: "Nội dung code không đúng yêu cầu",       kind: "err",  key: "code" },
   { id: "pre",   label: "Ảnh chạy trên hệ thống chỉ bấm Only precheck (không bấm Chọn)", kind: "err", key: "pre", fb: "Ảnh chạy hệ thống chỉ bấm Only precheck, không bấm Chọn" },
   { id: "fmt",   label: "File nộp ngang hàng với file .zip không phải .pdf (ví dụ nộp .docx, sai định dạng)", kind: "err", key: "fmt", fb: "File nộp ngang hàng với file .zip không phải .pdf, sai định dạng" },
+  { id: "name2", label: "Đặt tên file code sai yêu cầu từ 3 file trở lên", kind: "err", key: "name2", group: "codename", fb: "Đặt tên file code sai yêu cầu từ 3 file trở lên" },
+  { id: "name05", label: "Đặt tên file code sai yêu cầu ở 1–2 file", kind: "err", key: "name05", group: "codename", fb: "Đặt tên file code sai yêu cầu ở 1–2 file" },
+  { id: "zipname", label: "Đặt tên thư mục/file .zip sai yêu cầu", kind: "err", key: "zipname", fb: "Đặt tên thư mục/file .zip sai yêu cầu" },
   { id: "nosys2", label: "Thiếu ảnh chạy trên hệ thống hoặc ảnh chạy trên IDE từ 3 bài trở lên", kind: "err", key: "nosys2", group: "nosys", fb: "Thiếu ảnh chạy trên hệ thống hoặc ảnh chạy trên IDE từ 3 bài trở lên" },
   { id: "nosys05", label: "Thiếu ảnh chạy trên hệ thống hoặc ảnh chạy trên IDE ở 1–2 bài", kind: "err", key: "nosys05", group: "nosys", fb: "Thiếu ảnh chạy trên hệ thống hoặc ảnh chạy trên IDE ở 1–2 bài" },
   { id: "debai", label: "Bài tập tự luyện không có đề bài", kind: "err", key: "debai", fb: "Bài tập tự luyện không ghi đề bài" },
@@ -34,7 +37,7 @@ const BUOI = [
 ];
 
 const DEFAULT_SETTINGS = {
-  base: 8.5, hf: 0.5, img: 0.5, code: 0.5, pre: 0.5, nosys2: 2, nosys05: 0.5, debai: 0.5, fmt: 0.5, late: 0.5, bonus: 0.25,
+  base: 8.5, hf: 0.5, img: 0.5, code: 0.5, pre: 0.5, nosys2: 2, nosys05: 0.5, debai: 0.5, fmt: 0.5, name2: 2, name05: 0.5, zipname: 2, late: 0.5, bonus: 0.25,
   cap: 10,          // null = không giới hạn
   halfAll: true,    // thiếu file: chia đôi cả điểm cộng
 };
@@ -46,6 +49,9 @@ const SETTING_FIELDS = [
   ["code",  "Trừ: Nội dung code không đúng yêu cầu"],
   ["pre",   "Trừ: Chỉ bấm Only precheck"],
   ["fmt",   "Trừ: File nộp ngang hàng .zip không phải .pdf"],
+  ["name2",   "Trừ: Tên file code sai từ 3 file"],
+  ["name05",  "Trừ: Tên file code sai 1–2 file"],
+  ["zipname", "Trừ: Tên thư mục .zip sai"],
   ["nosys2",  "Trừ: Thiếu ảnh hệ thống/IDE từ 3 bài"],
   ["nosys05", "Trừ: Thiếu ảnh hệ thống/IDE 1–2 bài"],
   ["debai", "Trừ: Bài tự luyện không có đề bài"],
